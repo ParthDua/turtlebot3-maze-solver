@@ -95,4 +95,4 @@ Active development. Core mission (explore → map → detect → approach → st
 
 ## Author
 
-Parth — robotics and AI.
+Parth Dua — B.tech Robotics and AI at MRU
