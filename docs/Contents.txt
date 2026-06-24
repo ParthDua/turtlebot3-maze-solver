@@ -1,0 +1,5 @@
+1. 01_exploration.jpeg
+Cartographer SLAM building the map as the robot explores — laser scan (blue) and live occupancy grid in RViz.
+
+2. 02_target_reached.jpeg
+Robot autonomously navigates the completed maze and stops at the red target box.
