@@ -1,8 +1,25 @@
 # TurtleBot3 Autonomous Maze Solver
+![ROS 2 Humble](https://img.shields.io/badge/ROS%202-Humble-blue)
+![Nav2](https://img.shields.io/badge/Nav2-Navigation-green)
 
 An autonomous robot that explores an unknown maze, builds a map in real time, finds a red box, and navigates to stop just in front of it — all from a single launch command.
 
 Built with ROS 2 Humble, Nav2, Cartographer SLAM, and OpenCV, simulated in Gazebo Classic.
+
+## Demo
+
+<p align="center">
+  <img src="docs/01_exploration.jpeg" width="85%" />
+  <br/>
+  <em>Cartographer SLAM building the maze map in real time as the robot explores.
+  Blue shows the live LiDAR scan; the RViz inset shows the partially-built occupancy grid and the robot's planned path.</em>
+</p>
+
+<p align="center">
+  <img src="docs/02_target_reached.jpeg" width="85%" />
+  <br/>
+  <em>Mission complete: with the maze fully mapped, the robot has autonomously navigated to the red target box and stopped just in front of it.</em>
+</p>
 
 ## What it does
 
@@ -95,4 +112,4 @@ Active development. Core mission (explore → map → detect → approach → st
 
 ## Author
 
-Parth Dua — B.tech Robotics and AI at MRU
+Parth Dua — B.Tech Robotics and AI at MRU
