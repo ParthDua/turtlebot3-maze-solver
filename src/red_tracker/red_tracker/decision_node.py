@@ -10,6 +10,7 @@ from cv_bridge import CvBridge
 import cv2
 import numpy as np
 import subprocess, os, math
+from ament_index_python.packages import get_package_prefix
 
 # ── constants ─────────────────────────────────────────────────────────────────
 
@@ -42,7 +43,9 @@ ORBIT_STEP_TICKS = 18         # forward burst length while circling
 ORBIT_CHECK_TICKS= 14         # how long to pause-and-look back toward box
 MAX_ORBIT_COUNT  = 8          # safety cap before full reset
 
-MAP_SAVE_PATH = os.path.expanduser("~/ros2_ws/maps/explored_map")
+# Maps go in <workspace>/maps (gitignored). Workspace = folder holding install/.
+_WS_ROOT = os.path.dirname(os.path.dirname(get_package_prefix("red_tracker")))
+MAP_SAVE_PATH = os.path.join(_WS_ROOT, "maps", "explored_map")
 
 # ─────────────────────────────────────────────────────────────────────────────
 

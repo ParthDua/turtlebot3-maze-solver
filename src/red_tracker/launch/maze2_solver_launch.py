@@ -5,7 +5,7 @@ maze2_solver_launch.py — Maze Solver on a CUSTOM generated maze world.
 Single command:  ros2 launch red_tracker maze2_solver_launch.py
 
 Before running, generate the maze:
-    cd ~/ros2_ws
+    cd <your workspace>   # the folder containing src/ and install/
     python3 maze_generator.py easy        # creates maze_easy.world
 
 To switch difficulty: regenerate with medium/hard and change WORLD_FILE +
@@ -13,7 +13,7 @@ RED_BOX_X/Y below to the position the generator printed.
 """
 
 import os
-from ament_index_python.packages import get_package_share_directory
+from ament_index_python.packages import get_package_prefix, get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription, TimerAction, ExecuteProcess
 from launch.launch_description_sources import PythonLaunchDescriptionSource
@@ -21,7 +21,7 @@ from launch_ros.actions import Node
 
 
 # ── EDIT THESE when changing maze difficulty ──────────────────────────────────
-WORLD_FILE = "maze_easy.world"     # generated file in ~/ros2_ws
+WORLD_FILE = "maze_easy.world"     # generated file in workspace root (not in src/red_tracker/launch/)
 RED_BOX_X  = "4.60"                # far-corner position the generator printed
 RED_BOX_Y  = "4.60"
 # ──────────────────────────────────────────────────────────────────────────────
@@ -36,9 +36,11 @@ def generate_launch_description():
     red_tracker_dir = get_package_share_directory("red_tracker")
 
     cartographer_config_dir = os.path.join(tb3_cart_dir, "config")
-    nav2_params = os.path.join(os.path.expanduser("~/ros2_ws"), "maze_nav2_params.yaml")
+    # Workspace root = the folder that holds install/  (<ws>/install/red_tracker -> <ws>)
+    ws_root = os.path.dirname(os.path.dirname(get_package_prefix("red_tracker")))
+    nav2_params = os.path.join(ws_root, "maze_nav2_params.yaml")
 
-    world_path = os.path.join(os.path.expanduser("~/ros2_ws"), WORLD_FILE)
+    world_path = os.path.join(ws_root, WORLD_FILE)
     robot_sdf  = os.path.join(tb3_gazebo_dir, "models",
                               "turtlebot3_waffle_pi", "model.sdf")
     red_box_sdf = os.path.join(red_tracker_dir, "models", "red_box", "model.sdf")
